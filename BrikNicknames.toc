@@ -1,0 +1,6 @@
+## Interface: 100107
+## Title: BrikNicknames
+## Author: brik
+## Version: 0.0.1
+
+BrikNicknames.lua
