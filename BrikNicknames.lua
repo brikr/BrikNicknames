@@ -19,7 +19,7 @@ function LiquidAPI:GetName(unit)
   return real
 end
 
-if not IsAddOnLoaded('ElvUI') then return end
+if not C_AddOns.IsAddOnLoaded('ElvUI') then return end
 local E = unpack(ElvUI)
 
 E:AddTagInfo('name:nickname', "Brik Nicknames", 'Displays the nickname of the unit', 1)
