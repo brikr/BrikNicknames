@@ -1,4 +1,5 @@
 _G["LiquidAPI"] = {}
+_G["NSAPI"] = {}
 _G["BrikNicknames"] = {}
 
 local nicknames = {}
@@ -9,7 +10,7 @@ function BrikNicknames:AddAlias(nick, names)
   end
 end
 
-function LiquidAPI:GetName(unit)
+function BrikNicknames:GetName(unit)
   local real = UnitName(unit)
 
   if nicknames[real] then
@@ -19,20 +20,11 @@ function LiquidAPI:GetName(unit)
   return real
 end
 
-if not C_AddOns.IsAddOnLoaded('ElvUI') then return end
-local E = unpack(ElvUI)
+-- Mock the Liquid / Northern Sky functions so their Weakauras use our nicknames
+function LiquidAPI:GetName(unit)
+  return BrikNicknames:GetName(unit)
+end
 
-E:AddTagInfo('name:nickname', "Brik Nicknames", 'Displays the nickname of the unit', 1)
-E:AddTagInfo('name:nickname:short', "Brik Nicknames", 'Displays the nickname of the unit (limited to 10 characters)', 2)
-
-E:AddTag("name:nickname", 'UNIT_NAME_UPDATE', function(unit, _, _)
-  if not unit then return end
-
-  return LiquidAPI:GetName(unit)
-end)
-
-E:AddTag("name:nickname:short", 'UNIT_NAME_UPDATE', function(unit, _, _)
-  if not unit then return end
-
-  return E:ShortenString(LiquidAPI:GetName(unit), 10)
-end)
+function NSAPI:GetName(unit)
+  return BrikNicknames:GetName(unit)
+end

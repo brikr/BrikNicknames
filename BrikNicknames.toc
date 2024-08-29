@@ -4,3 +4,5 @@
 ## Version: @project-version@
 
 BrikNicknames.lua
+BrikNicknamesElvUI.lua
+BrikNicknamesGrid2.lua
